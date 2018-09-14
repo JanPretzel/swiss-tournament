@@ -1,17 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { TeamContainer, Score, MatchContainer } from './styles';
 import Team from '../Team';
 
-const renderTeam = team => <Team logoUrl={team.logoUrl} teamName={team.teamName} />;
+const renderTeam = team => (
+  <TeamContainer>
+    <Team logoUrl={team.logoUrl} teamName={team.teamName} />
+  </TeamContainer>
+);
 
 const Match = ({ team1, team2, score }) => {
   return (
-    <div>
+    <MatchContainer>
       {renderTeam(team1)}
-      {score ? score : 'vs.'}
+      <Score>{score ? score : 'vs.'}</Score>
       {renderTeam(team2)}
-    </div>
+    </MatchContainer>
   );
 };
 
