@@ -4,6 +4,15 @@ import { withTheme } from 'styled-components';
 
 import { SwissContainer, RoundContainer, SvgContainer, Line } from './styles';
 import { Bucket } from '../../components';
+import data from '../../mock';
+
+const getMatch = normalizedMatch => ({
+  team1: data.teams[normalizedMatch.team1],
+  team2: data.teams[normalizedMatch.team2],
+  score: normalizedMatch.score,
+});
+
+const getMatches = normalizedMatches => normalizedMatches.map(match => getMatch(match));
 
 const calculateCenterOfRef = (ref, theme) => {
   const domNode = ReactDOM.findDOMNode(ref.current);
@@ -35,12 +44,18 @@ class Swiss extends React.Component {
       round1Bucket1: 'round1Bucket1',
       round2Bucket1: 'round2Bucket1',
       round2Bucket2: 'round2Bucket2',
+      round3Bucket1: 'round3Bucket1',
+      round3Bucket2: 'round3Bucket2',
+      round3Bucket3: 'round3Bucket3',
     };
 
     this.bucketRefs = {
       [this.bucketIds.round1Bucket1]: React.createRef(),
       [this.bucketIds.round2Bucket1]: React.createRef(),
       [this.bucketIds.round2Bucket2]: React.createRef(),
+      [this.bucketIds.round3Bucket1]: React.createRef(),
+      [this.bucketIds.round3Bucket2]: React.createRef(),
+      [this.bucketIds.round3Bucket3]: React.createRef(),
     };
 
     this.bucketCenters = {};
@@ -65,6 +80,22 @@ class Swiss extends React.Component {
       {
         from: this.bucketCenters[this.bucketIds.round1Bucket1],
         to: this.bucketCenters[this.bucketIds.round2Bucket2],
+      },
+      {
+        from: this.bucketCenters[this.bucketIds.round2Bucket1],
+        to: this.bucketCenters[this.bucketIds.round3Bucket1],
+      },
+      {
+        from: this.bucketCenters[this.bucketIds.round2Bucket1],
+        to: this.bucketCenters[this.bucketIds.round3Bucket2],
+      },
+      {
+        from: this.bucketCenters[this.bucketIds.round2Bucket2],
+        to: this.bucketCenters[this.bucketIds.round3Bucket2],
+      },
+      {
+        from: this.bucketCenters[this.bucketIds.round2Bucket2],
+        to: this.bucketCenters[this.bucketIds.round3Bucket3],
       },
     ];
 
@@ -95,92 +126,31 @@ class Swiss extends React.Component {
         <RoundContainer>
           <Bucket
             ref={this.bucketRefs[this.bucketIds.round1Bucket1]}
-            matches={[
-              {
-                team1: { logoUrl: 'https://static.hltv.org/images/team/logo/4411', teamName: 'NiP' },
-                team2: { logoUrl: 'https://static.hltv.org/images/team/logo/4608', teamName: 'Navi' },
-              },
-              {
-                team1: { logoUrl: 'https://static.hltv.org/images/team/logo/4411', teamName: 'NiP' },
-                team2: { logoUrl: 'https://static.hltv.org/images/team/logo/4608', teamName: 'Navi' },
-                score: '16:14',
-              },
-              {
-                team1: { logoUrl: 'https://static.hltv.org/images/team/logo/4411', teamName: 'NiP' },
-                team2: { logoUrl: 'https://static.hltv.org/images/team/logo/4608', teamName: 'Navi' },
-              },
-              {
-                team1: { logoUrl: 'https://static.hltv.org/images/team/logo/4411', teamName: 'NiP' },
-                team2: { logoUrl: 'https://static.hltv.org/images/team/logo/4608', teamName: 'Navi' },
-                score: '16:14',
-              },
-              {
-                team1: { logoUrl: 'https://static.hltv.org/images/team/logo/4411', teamName: 'NiP' },
-                team2: { logoUrl: 'https://static.hltv.org/images/team/logo/4608', teamName: 'Navi' },
-              },
-              {
-                team1: { logoUrl: 'https://static.hltv.org/images/team/logo/4411', teamName: 'NiP' },
-                team2: { logoUrl: 'https://static.hltv.org/images/team/logo/4608', teamName: 'Navi' },
-                score: '16:14',
-              },
-              {
-                team1: { logoUrl: 'https://static.hltv.org/images/team/logo/4411', teamName: 'NiP' },
-                team2: { logoUrl: 'https://static.hltv.org/images/team/logo/4608', teamName: 'Navi' },
-              },
-              {
-                team1: { logoUrl: 'https://static.hltv.org/images/team/logo/4411', teamName: 'NiP' },
-                team2: { logoUrl: 'https://static.hltv.org/images/team/logo/4608', teamName: 'Navi' },
-                score: '16:14',
-              },
-            ]}
+            matches={getMatches(data.rounds['1'].buckets['1'].matches)}
           />
         </RoundContainer>
         <RoundContainer>
           <Bucket
             ref={this.bucketRefs[this.bucketIds.round2Bucket1]}
-            matches={[
-              {
-                team1: { logoUrl: 'https://static.hltv.org/images/team/logo/4411', teamName: 'NiP' },
-                team2: { logoUrl: 'https://static.hltv.org/images/team/logo/4608', teamName: 'Navi' },
-              },
-              {
-                team1: { logoUrl: 'https://static.hltv.org/images/team/logo/4411', teamName: 'NiP' },
-                team2: { logoUrl: 'https://static.hltv.org/images/team/logo/4608', teamName: 'Navi' },
-                score: '16:14',
-              },
-              {
-                team1: { logoUrl: 'https://static.hltv.org/images/team/logo/4411', teamName: 'NiP' },
-                team2: { logoUrl: 'https://static.hltv.org/images/team/logo/4608', teamName: 'Navi' },
-              },
-              {
-                team1: { logoUrl: 'https://static.hltv.org/images/team/logo/4411', teamName: 'NiP' },
-                team2: { logoUrl: 'https://static.hltv.org/images/team/logo/4608', teamName: 'Navi' },
-                score: '16:14',
-              },
-            ]}
+            matches={getMatches(data.rounds['2'].buckets['1'].matches)}
           />
           <Bucket
             ref={this.bucketRefs[this.bucketIds.round2Bucket2]}
-            matches={[
-              {
-                team1: { logoUrl: 'https://static.hltv.org/images/team/logo/4411', teamName: 'NiP' },
-                team2: { logoUrl: 'https://static.hltv.org/images/team/logo/4608', teamName: 'Navi' },
-              },
-              {
-                team1: { logoUrl: 'https://static.hltv.org/images/team/logo/4411', teamName: 'NiP' },
-                team2: { logoUrl: 'https://static.hltv.org/images/team/logo/4608', teamName: 'Navi' },
-                score: '16:14',
-              },
-              {
-                team1: { logoUrl: 'https://static.hltv.org/images/team/logo/4411', teamName: 'NiP' },
-                team2: { logoUrl: 'https://static.hltv.org/images/team/logo/4608', teamName: 'Navi' },
-              },
-              {
-                team1: { logoUrl: 'https://static.hltv.org/images/team/logo/4411', teamName: 'NiP' },
-                team2: { logoUrl: 'https://static.hltv.org/images/team/logo/4608', teamName: 'Navi' },
-                score: '16:14',
-              },
-            ]}
+            matches={getMatches(data.rounds['2'].buckets['2'].matches)}
+          />
+        </RoundContainer>
+        <RoundContainer>
+          <Bucket
+            ref={this.bucketRefs[this.bucketIds.round3Bucket1]}
+            matches={getMatches(data.rounds['3'].buckets['1'].matches)}
+          />
+          <Bucket
+            ref={this.bucketRefs[this.bucketIds.round3Bucket2]}
+            matches={getMatches(data.rounds['3'].buckets['2'].matches)}
+          />
+          <Bucket
+            ref={this.bucketRefs[this.bucketIds.round3Bucket3]}
+            matches={getMatches(data.rounds['3'].buckets['3'].matches)}
           />
         </RoundContainer>
         {this.renderConnections()}
