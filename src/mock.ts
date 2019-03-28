@@ -1,3 +1,5 @@
+import { NormalizedData } from './types';
+
 export default {
   teams: {
     nip: {
@@ -225,4 +227,4 @@ export default {
     '4': {},
     '5': {},
   },
-};
+} as NormalizedData;
