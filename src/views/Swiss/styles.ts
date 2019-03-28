@@ -30,6 +30,5 @@ export const SvgContainer = styled.div`
 
 export const Line = styled.line`
   stroke-width: 6px;
-  stroke: red;
-  color: red;
+  stroke: #20504f;
 `;
