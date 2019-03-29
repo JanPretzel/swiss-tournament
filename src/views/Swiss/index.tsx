@@ -24,7 +24,7 @@ const calculateCenterOfRef = (ref: RefObject<Bucket>, theme: Theme) => {
     const domRect = domNode.getBoundingClientRect() as DOMRect;
 
     const matchCount = ref.current.props.matches.length || 0;
-    const height = matchCount * theme.matchHeight + (matchCount - 1) * theme.matchPadding + theme.bucketPadding;
+    const height = matchCount * theme.matchHeight + (matchCount - 1) * theme.matchPadding + theme.bucketPadding + 36;
 
     return {
       x: domRect.x + domRect.width / 2,

@@ -6,6 +6,18 @@ export interface Theme {
   matchWidth: number;
   matchPadding: number;
   bucketPadding: number;
+  colors: {
+    red: Color;
+    green: Color;
+  };
+}
+
+interface Color {
+  lightest: string;
+  lighter: string;
+  light: string;
+  base: string;
+  dark: string;
 }
 
 export default {
@@ -14,6 +26,22 @@ export default {
   matchWidth: 140,
   matchPadding: 15,
   bucketPadding: 15,
+  colors: {
+    red: {
+      lightest: '#fcebea',
+      lighter: '#f9acaa',
+      light: '#ef5753',
+      base: '#e3342f',
+      dark: '#cc1f1a',
+    },
+    green: {
+      lightest: '#e3fcec',
+      lighter: '#a2f5bf',
+      light: '#51d88a',
+      base: '#38c172',
+      dark: '#1f9d55',
+    },
+  },
 } as Theme;
 
 export const GlobalStyle = createGlobalStyle`
